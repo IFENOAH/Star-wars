@@ -1,13 +1,15 @@
 import { QueryClient, QueryClientProvider, useQuery } from "react-query";
+import Planet from "./Planet";
 
 const queryClient = new QueryClient();
 const fetchPanets = async () => {
-  const result = await fetch("https://swapi.dev/api/people");
+  const result = await fetch("https://swapi.dev/api/planets");
   return result.json();
 };
 
 const Planets = () => {
   const { data, status } = useQuery("Planets", fetchPanets);
+  console.log(data);
   return (
     <div>
       <h2>Planets</h2>
@@ -16,7 +18,7 @@ const Planets = () => {
       {status === "success" && (
         <div>
           {data.results.map((planet) => (
-            <div>{planet.name}</div>
+            <Planet key={planet.name} planet={planet} />
           ))}
         </div>
       )}
