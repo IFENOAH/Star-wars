@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import "./index.css";
 import Navbar from "./components/Navbar";
 import Planets from "./components/Planets";
 import People from "./components/People";
@@ -9,7 +10,9 @@ function App() {
     <div className="App">
       <h1>Star Wars Info</h1>
       <Navbar setPage={setPage} />
-      <main>{page === "planets" ? <Planets /> : <People />}</main>
+      <main className="content">
+        {page === "planets" ? <Planets /> : <People />}
+      </main>
     </div>
   );
 }
